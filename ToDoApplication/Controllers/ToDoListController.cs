@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
+using ToDoApplication.Hubs;
 using ToDoApplication.Model;
 using ToDoApplication.Service;
 
@@ -16,10 +18,12 @@ namespace ToDoApplication.Controllers
     {
 
         private IToDoListService _logic;
+        private readonly IHubContext<NotificationHub> _hubContext;
 
-        public ToDoListController(IToDoListService logic)
+        public ToDoListController(IToDoListService logic, IHubContext<NotificationHub> hubContext)
         {
             _logic = logic;
+            _hubContext = hubContext;
         }
 
         [HttpGet("{id}")]
