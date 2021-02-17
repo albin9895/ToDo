@@ -1,13 +1,28 @@
 ﻿var Product = {
-    taskName: ""
+    taskName: "",
+    id:""
 }
 var DeleteProduct = {
     id:""
 }
 
+var id = 0;
+
+function productToFields(product) {
+    var taskName = product[0].taskName
+    $("#taskName").val(taskName);
+    id = product[0].id;
+    
+}
+
+function refreshPage() {
+    location.reload();
+}
+
+
 function updateClick() {
     Product = new Object();
-    Product.taskName = $("#TaskName").val();    
+    Product.taskName = $("#taskName").val();    
     if ($("#updateButton").text().trim() == "Add") {
         productAdd(Product);
     }
@@ -22,8 +37,10 @@ function productAdd(product) {
         contentType:
             "application/json;charset=utf-8",
         data: JSON.stringify(product),
-        success: function (product) {
+        success: function (product) { 
+            refreshPage();
             productAddSuccess(product);
+            refreshPage();
         },
         error: function (request, message, error) {
             handleException(request, message, error);
@@ -42,15 +59,33 @@ function addClick() {
     formClear();
 }
 
-function productUpdate(product) {
+function productGet(ctl) {    
+    var id = $(ctl).data("id");    
+    $("#productid").val(id);    
     $.ajax({
-        url: "https://localhost:44327/api/ToDo",
+        url: "https://localhost:44327/api/ToDoList/" + id,
+        type: 'GET',
+        dataType: 'json',
+        success: function (product) {
+            productToFields(product);            
+            $("#updateButton").text("Update");
+        },
+        error: function (request, message, error) {
+            handleException(request, message, error);
+        }
+    });
+}
+
+function productUpdate(product) {    
+    $.ajax({
+        url: "https://localhost:44327/api/ToDo/"+id,
         type: 'PUT',
         contentType:
             "application/json;charset=utf-8",
         data: JSON.stringify(product),
-        success: function (product) {
+        success: function (product) {            
             productUpdateSuccess(product);
+            refreshPage();
         },
         error: function (request, message, error) {
             handleException(request, message, error);
@@ -72,13 +107,16 @@ function productUpdateInTable(product) {
 
 function productDelete(ctl) {
     var id = $(ctl).data("id");
-
+    DeleteProduct.id = id;
     $.ajax({
         url: "https://localhost:44327/api/ToDo",
         type: 'DELETE',
-        data: id,
-        success: function (product) {
+        contentType:
+            "application/json;charset=utf-8",
+        data: JSON.stringify(DeleteProduct),
+        success: function (DeleteProduct) {
             $(ctl).parents("tr").remove();
+            refreshPage();
         },
         error: function (request, message, error) {
             handleException(request, message, error);
@@ -122,6 +160,8 @@ function productAddRow(product) {
         productBuildTableRow(product));
 }
 function productBuildTableRow(product) {
+    var d = product.createdAt;
+    d = d.split('T')[0];
     var ret =
         "<tr>" +
         "<td>" +
@@ -134,7 +174,8 @@ function productBuildTableRow(product) {
         "</td>" +        
 
         "<td>" + product.taskName + "</td>" +
-        "<td>" + product.createdAt + "</td>"+  
+       
+        "<td>" + d + "</td>"+  
 
         "<td>" +
         "<button type='button' " +

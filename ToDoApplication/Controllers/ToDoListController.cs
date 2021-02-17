@@ -27,8 +27,9 @@ namespace ToDoApplication.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById([FromQuery] ToDoListModel model = null)
+        public IActionResult GetById(int id,[FromQuery] ToDoListModel model = null)
         {
+            model.Id = id;
             if (model == null)
             {
                 model = new ToDoListModel();

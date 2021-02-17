@@ -31,8 +31,9 @@ namespace ToDoApplication.Controllers
 
 
         [HttpPut("{id}")]
-        public IActionResult Save([FromBody] ToDoListModel model)
+        public IActionResult Save(int id,[FromBody] ToDoListModel model)
         {
+            model.Id = id;
             var row = this.SaveRow(model);
             return this.Ok(row);
         }
