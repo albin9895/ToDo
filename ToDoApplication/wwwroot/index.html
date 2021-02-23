@@ -8,6 +8,24 @@
         <script language="JavaScript" type="text/javascript" src="/js/sprinkle.js"></script>-->
     </head>
     <body>
+        <script src="https://unpkg.com/@aspnet/signalr@1.0.0-rc1-final/dist/browser/signalr.js"></script>
+        <div class="signalr-demo">
+            <form id="message-form">
+                <input type="text" id="message-box" />
+            </form>
+            <hr />
+            <ul id="messages"></ul>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <hr /><hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <ul id="listMessage"></ul>
+            </div>
+        </div>
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
@@ -30,23 +48,23 @@
             </div>
         </div>
         <!--<div class="row">
-            <div class="col-sm-6">
-                <button type="button" id="addButton" class="btn btn-primary" onclick="addClick();">Add Task</button>
-            </div>
-        </div>-->
+        <div class="col-sm-6">
+            <button type="button" id="addButton" class="btn btn-primary" onclick="addClick();">Add Task</button>
+        </div>
+    </div>-->
         <!--<div class="row">
-            <div class="col-sm-6">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        Task Information
-                    </div>
-                    <div class="panel-body">
-                    </div>
-                    <div class="panel-footer">
-                    </div>
+        <div class="col-sm-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    Task Information
+                </div>
+                <div class="panel-body">
+                </div>
+                <div class="panel-footer">
                 </div>
             </div>
-        </div>-->
+        </div>
+    </div>-->
         <div class="form-group">
             <label for="TaskName">Add/Update Task</label>
             <input type="text" id="taskName" class="form-control" />
@@ -62,8 +80,10 @@
             <span class="glyphicon glyphicon-edit"></span>
         </button>
         <input type="hidden" id="productid" value="0" />
-        <script src="js/todo.js" asp-append-version="true"></script>
+        <script src="js/todo.js" asp-append-version="true"></script>       
+        <script src="js/chat.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
         <script>
             $(document).ready(function () {
                 productList();

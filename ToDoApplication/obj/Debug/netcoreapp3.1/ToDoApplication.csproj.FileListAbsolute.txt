@@ -148,6 +148,7 @@ C:\Users\albin.abraham\source\repos\ToDoApplication\ToDoApplication\bin\Debug\ne
 C:\Users\albin.abraham\source\repos\ToDoApplication\ToDoApplication\bin\Debug\netcoreapp3.1\System.Net.Http.Formatting.dll
 C:\Users\albin.abraham\source\repos\ToDoApplication\ToDoApplication\bin\Debug\netcoreapp3.1\System.Web.Http.dll
 C:\Users\albin.abraham\source\repos\ToDoApplication\ToDoApplication\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+C:\Users\albin.abraham\source\repos\ToDoApplication\ToDoApplication\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.Google.dll
 C:\Users\albin.abraham\source\repos\ToDoApplication\ToDoApplication\obj\Debug\netcoreapp3.1\ToDoApplication.csproj.CoreCompileInputs.cache
 C:\Users\albin.abraham\source\repos\ToDoApplication\ToDoApplication\obj\Debug\netcoreapp3.1\ToDoApplication.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\albin.abraham\source\repos\ToDoApplication\ToDoApplication\obj\Debug\netcoreapp3.1\ToDoApplication.MvcApplicationPartsAssemblyInfo.cache

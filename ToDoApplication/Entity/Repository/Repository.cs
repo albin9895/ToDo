@@ -59,8 +59,14 @@ namespace ToDoApplication.Entities.Repository
                 return dbSet.AsQueryable<T>();
             }
         }
+        public virtual IQueryable<T> GetAll()
+        {
 
-      
+            return dbSet;
+            
+        }
+
+
         public void Save()
         {
             _dbContext.SaveChanges();

@@ -1,4 +1,5 @@
 
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ToDoApplication.Entities.Repository;
 using ToDoApplication.Entity;
+using ToDoApplication.Helper;
 using ToDoApplication.Hubs;
 using ToDoApplication.Service;
 
@@ -25,11 +27,18 @@ namespace ToDoApplication
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddControllers();
+            services.AddAuthentication("BasicAuthentication")
+                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
+            services.AddTransient<IUserService, UserService>();
             services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
             services.AddTransient<IToDoListService, ToDoListService>();
             services.AddTransient<IToDoService, ToDoService>();
-            services.AddMvc();
+            services.AddTransient<IUserRegisterService, UserRegisterService>();
+            
+            
+            
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v2", new Microsoft.OpenApi.Models.OpenApiInfo
@@ -63,6 +72,12 @@ namespace ToDoApplication
 
             app.UseRouting();
 
+            app.UseCors(x => x
+               .AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader());
+
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {

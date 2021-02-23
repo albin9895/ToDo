@@ -10,6 +10,7 @@ namespace ToDoApplication.Entity
     {
      
         public DbSet<ToDo> toDos { get; set; }
+        public DbSet<User> users { get; set; }
 
         public ToDoDbContext(DbContextOptions<ToDoDbContext> options)
        : base(options)

@@ -21,9 +21,11 @@ namespace ToDoApplication.Entities.Repository
         void Update(T entity);
         
         void Save();
+        IQueryable<T> GetAll();
 
-       
-       
-      
+
+
+
+
     }
 }

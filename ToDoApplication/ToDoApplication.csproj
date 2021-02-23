@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>6484a360-db06-489e-8d00-a839e1e2249f</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -9,6 +10,8 @@
     <PackageReference Include="EntityFramework" Version="6.4.4" />
     <PackageReference Include="LinqKit" Version="1.1.23" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="3.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Common" Version="3.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.3">
       <PrivateAssets>all</PrivateAssets>
